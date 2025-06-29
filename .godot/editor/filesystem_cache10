@@ -1,0 +1,12 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1751189627
+icon.svg::CompressedTexture2D::4711516442812664509::1751189578::1751189628::1::::<><><>0<>0<>bc6cd36858f2718618c3771f733d39ea<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+test.tscn::PackedScene::4352346162406236367::1751189578::0::1::::<><><>0<>0<><>::uid://bvrgvvra3ap06::::res://Scripts/Utility/state_manager.gd<>uid://dlmp7xkwtl2iv::::res://Scripts/Utility/ui_manager.gd
+::res://Scenes/::1751189578
+start_menu.tscn::PackedScene::3199843668169381889::1751189578::0::1::::<><><>0<>0<><>::
+::res://Scripts/::1751189578
+::res://Scripts/Utility/::1751189578
+button.gd::GDScript::7583411567042410857::1751189578::0::1::::<>Node<><>0<>0<><>::
+scene_manager.gd::GDScript::4766135118851015191::1751189578::0::1::::<>Node<><>0<>0<><>::
+state_manager.gd::GDScript::3895883754828862637::1751189578::0::1::::<>Node<><>0<>0<><>::
+ui_manager.gd::GDScript::7957080988953361369::1751189578::0::1::::<>Node<><>0<>0<><>::
