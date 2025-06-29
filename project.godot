@@ -21,6 +21,10 @@ StateManager="*res://Scripts/Utility/state_manager.gd"
 UiManager="*res://Scripts/Utility/ui_manager.gd"
 SceneManager="*res://Scripts/Utility/scene_manager.gd"
 
+[global_group]
+
+button_container=""
+
 [rendering]
 
 renderer/rendering_method="mobile"
