@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://blua7td5w6wnx"]
+
+[node name="StartMenu" type="Node2D"]
+
+[node name="button_container" type="VBoxContainer" parent="." groups=["button_container"]]
+offset_left = 342.0
+offset_top = 183.0
+offset_right = 867.0
+offset_bottom = 469.0
+alignment = 1
+
+[node name="play_button" type="Button" parent="button_container"]
+layout_mode = 2
+text = "Play"
+
+[node name="upgrade_button" type="Button" parent="button_container"]
+layout_mode = 2
+text = "Upgrade"
+
+[node name="quit_button" type="Button" parent="button_container"]
+layout_mode = 2
+text = "Quit"

@@ -1,0 +1,26 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Aether Ascend"
+run/main_scene="uid://blua7td5w6wnx"
+config/features=PackedStringArray("4.4", "Mobile")
+config/icon="res://icon.svg"
+
+[autoload]
+
+StateManager="*res://Scripts/Utility/state_manager.gd"
+UiManager="*res://Scripts/Utility/ui_manager.gd"
+SceneManager="*res://Scripts/Utility/scene_manager.gd"
+
+[rendering]
+
+renderer/rendering_method="mobile"
