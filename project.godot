@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 StateManager="*res://Scripts/Utility/state_manager.gd"
 UiManager="*res://Scripts/Utility/ui_manager.gd"
 SceneManager="*res://Scripts/Utility/scene_manager.gd"
+UpgradeManager="*res://Scripts/Utility/upgrade_manager.gd"
+TimerManager="*res://Scripts/Utility/timer_manager.gd"
 
 [global_group]
 

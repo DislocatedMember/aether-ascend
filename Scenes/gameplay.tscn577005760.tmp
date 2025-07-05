@@ -189,14 +189,13 @@ position = Vector2(1.90735e-06, 0)
 shape = SubResource("RectangleShape2D_wbxth")
 one_way_collision = true
 
-[node name="character_dummy" type="RigidBody2D" parent="." node_paths=PackedStringArray("line_renderer", "stamina_bar_local")]
+[node name="character_dummy" type="RigidBody2D" parent="." node_paths=PackedStringArray("line_renderer")]
 position = Vector2(502, 567)
 lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("3_m34ki")
 line_renderer = NodePath("Line2D")
-stamina_bar_local = NodePath("../CanvasLayer/ProgressBar")
 
 [node name="Line2D" type="Line2D" parent="character_dummy"]
 rotation = -0.00333281

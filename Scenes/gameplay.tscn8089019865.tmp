@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxgloygw2t3wu"]
+[gd_scene load_steps=15 format=3 uid="uid://dxgloygw2t3wu"]
 
 [ext_resource type="Script" uid="uid://6nb4tennp60n" path="res://Scripts/Utility/subcribe.gd" id="1_m34ki"]
 [ext_resource type="Script" uid="uid://cwglm01tqggx7" path="res://Scripts/Utility/gameover_collider.gd" id="1_r8bcl"]
@@ -9,6 +9,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rlidi"]
 size = Vector2(2682, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qnfl"]
+size = Vector2(1429, 1260)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m34ki"]
 shader = ExtResource("2_wbxth")
@@ -33,13 +36,8 @@ shader_parameter/b = 0.57
 
 [node name="Gameplay" type="Node2D"]
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("border", "player")]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(575, 326)
-script = ExtResource("2_rlidi")
-lerp_speed = 725.0
-move_factor = 0.6
-border = NodePath("Node2D")
-player = NodePath("../character_dummy")
 
 [node name="death" type="Area2D" parent="Camera2D"]
 position = Vector2(-11, 337)
@@ -49,8 +47,13 @@ script = ExtResource("1_r8bcl")
 position = Vector2(119, 1.5)
 shape = SubResource("RectangleShape2D_rlidi")
 
-[node name="Node2D" type="Node2D" parent="Camera2D"]
-position = Vector2(-45, -252)
+[node name="move" type="Area2D" parent="Camera2D"]
+script = ExtResource("2_rlidi")
+lerp_speed = 25.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/move"]
+position = Vector2(-15, -748)
+shape = SubResource("RectangleShape2D_1qnfl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -97,7 +100,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "1234/1234"
 
-[node name="platform_dummy" type="StaticBody2D" parent="." groups=["platforms"]]
+[node name="platform_dummy" type="StaticBody2D" parent="."]
 position = Vector2(333, 252)
 scale = Vector2(12.2783, 0.70975)
 
@@ -112,7 +115,7 @@ position = Vector2(1.90735e-06, 0)
 shape = SubResource("RectangleShape2D_wbxth")
 one_way_collision = true
 
-[node name="platform_dummy2" type="StaticBody2D" parent="." groups=["platforms"]]
+[node name="platform_dummy2" type="StaticBody2D" parent="."]
 position = Vector2(526, 416)
 scale = Vector2(12.2783, 0.70975)
 
@@ -128,7 +131,7 @@ shape = SubResource("RectangleShape2D_wbxth")
 one_way_collision = true
 one_way_collision_margin = 13.8
 
-[node name="platform_dummy3" type="StaticBody2D" parent="." groups=["platforms"]]
+[node name="platform_dummy3" type="StaticBody2D" parent="."]
 position = Vector2(526, 618)
 scale = Vector2(12.2783, 0.70975)
 
@@ -143,7 +146,7 @@ position = Vector2(1.90735e-06, 0)
 shape = SubResource("RectangleShape2D_wbxth")
 one_way_collision = true
 
-[node name="platform_dummy4" type="StaticBody2D" parent="." groups=["platforms"]]
+[node name="platform_dummy4" type="StaticBody2D" parent="."]
 position = Vector2(333, -279)
 scale = Vector2(12.2783, 0.70975)
 
@@ -158,7 +161,7 @@ position = Vector2(1.90735e-06, 0)
 shape = SubResource("RectangleShape2D_wbxth")
 one_way_collision = true
 
-[node name="platform_dummy5" type="StaticBody2D" parent="." groups=["platforms"]]
+[node name="platform_dummy5" type="StaticBody2D" parent="."]
 position = Vector2(526, -115)
 scale = Vector2(12.2783, 0.70975)
 
@@ -174,7 +177,7 @@ shape = SubResource("RectangleShape2D_wbxth")
 one_way_collision = true
 one_way_collision_margin = 13.8
 
-[node name="platform_dummy6" type="StaticBody2D" parent="." groups=["platforms"]]
+[node name="platform_dummy6" type="StaticBody2D" parent="."]
 position = Vector2(526, 87)
 scale = Vector2(12.2783, 0.70975)
 
@@ -189,14 +192,15 @@ position = Vector2(1.90735e-06, 0)
 shape = SubResource("RectangleShape2D_wbxth")
 one_way_collision = true
 
-[node name="character_dummy" type="RigidBody2D" parent="." node_paths=PackedStringArray("line_renderer", "stamina_bar_local")]
+[node name="character_dummy" type="RigidBody2D" parent="." node_paths=PackedStringArray("line_renderer", "stamina_bar")]
 position = Vector2(502, 567)
+gravity_scale = 0.56
 lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("3_m34ki")
 line_renderer = NodePath("Line2D")
-stamina_bar_local = NodePath("../CanvasLayer/ProgressBar")
+stamina_bar = NodePath("../CanvasLayer/ProgressBar")
 
 [node name="Line2D" type="Line2D" parent="character_dummy"]
 rotation = -0.00333281
@@ -213,5 +217,6 @@ mesh = SubResource("QuadMesh_rlidi")
 
 [connection signal="area_entered" from="Camera2D/death" to="Camera2D/death" method="_on_area_entered"]
 [connection signal="body_entered" from="Camera2D/death" to="Camera2D/death" method="_on_body_entered"]
+[connection signal="body_entered" from="Camera2D/move" to="Camera2D/move" method="_on_body_entered"]
 [connection signal="body_entered" from="character_dummy" to="character_dummy" method="_on_body_entered"]
 [connection signal="body_exited" from="character_dummy" to="character_dummy" method="_on_body_exited"]

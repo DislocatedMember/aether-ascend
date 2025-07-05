@@ -21,7 +21,9 @@ var state_button_map: Dictionary = {
 	"play": state.PLAYING,
 	"quit": state.QUIT,
 	"pause": state.PAUSE,
-	"resume": state.RESUME
+	"resume": state.RESUME,
+	"stamina_depleted": state.GAMEOVER,
+	"death" : state.GAMEOVER
 }
 
 func _ready() -> void:

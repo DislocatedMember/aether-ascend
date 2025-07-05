@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ckkpwsw2fbg13"]
 
-[ext_resource type="Script" uid="uid://cv00ta3iv3cam" path="res://Scripts/Utility/load_ui_elements.gd" id="1_emv3i"]
+[ext_resource type="Script" uid="uid://6nb4tennp60n" path="res://Scripts/Utility/subcribe.gd" id="1_k0w1u"]
 [ext_resource type="Shader" uid="uid://cke2osc4auvgp" path="res://Scripts/Shader/pause_menu_background.gdshader" id="2_k0w1u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k0w1u"]
@@ -9,7 +9,6 @@ shader_parameter/blur_amount = 2.068
 
 [node name="PauseMenu" type="Node2D"]
 process_mode = 3
-script = ExtResource("1_emv3i")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -28,6 +27,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Resume
 "
+script = ExtResource("1_k0w1u")
 
 [node name="menu" type="Button" parent="CanvasLayer/button_container"]
 custom_minimum_size = Vector2(500, 0)
@@ -36,6 +36,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Menu
 "
+script = ExtResource("1_k0w1u")
 
 [node name="quit" type="Button" parent="CanvasLayer/button_container"]
 custom_minimum_size = Vector2(500, 0)
@@ -43,6 +44,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Quit"
+script = ExtResource("1_k0w1u")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_k0w1u")

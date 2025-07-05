@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatData" load_steps=2 format=3 uid="uid://dwd80v72so32p"]
+
+[ext_resource type="Script" uid="uid://s3wysif5hqi6" path="res://Scripts/Resources/Stats.gd" id="1_hohfr"]
+
+[resource]
+script = ExtResource("1_hohfr")
+jump_height = 300.0
+jump_count = 2
+stamina = 68.77
+stamina_rate_idle = 0.245
+stamina_depletion_time_idle = 0.435
+stamina_depletion_time_air = 1.0
+stamina_rate_air = 2.06
+metadata/_custom_type_script = "uid://s3wysif5hqi6"

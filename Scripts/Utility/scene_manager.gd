@@ -15,7 +15,7 @@ func get_all_scenes() -> Array[PackedScene]:
 	scenes.append(play_scene)
 	scenes.append(pause_scene)
 	return scenes
-	
+
 func handle_state_change(old_state: StateManager.state, new_state: StateManager.state):
 	match new_state:
 		StateManager.state.QUIT:
@@ -35,6 +35,9 @@ func handle_state_change(old_state: StateManager.state, new_state: StateManager.
 		StateManager.state.RESUME:
 			get_tree().current_scene.remove_child(pause_scene_node)
 			get_tree().paused = false
+		StateManager.state.GAMEOVER:
+			UpgradeManager.reset_all_current_stats()
+			handle_state_change(StateManager.state.GAMEOVER, StateManager.state.MENU)
 		_:
 			pass
 			
