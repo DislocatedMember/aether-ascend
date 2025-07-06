@@ -1,11 +1,11 @@
 [gd_scene load_steps=14 format=3 uid="uid://dxgloygw2t3wu"]
 
-[ext_resource type="Script" uid="uid://6nb4tennp60n" path="res://Scripts/Utility/subcribe.gd" id="1_m34ki"]
-[ext_resource type="Script" uid="uid://cwglm01tqggx7" path="res://Scripts/Utility/gameover_collider.gd" id="1_r8bcl"]
-[ext_resource type="Script" uid="uid://buta7cndy81pw" path="res://Scripts/Utility/stamina_bar.gd" id="2_kwrm5"]
-[ext_resource type="Script" uid="uid://dxr6kauv1jku8" path="res://Scripts/Utility/move_camera.gd" id="2_rlidi"]
-[ext_resource type="Shader" uid="uid://b00txshotptk8" path="res://Scripts/Shader/platform.gdshader" id="2_wbxth"]
-[ext_resource type="Script" uid="uid://didr8av5fwgid" path="res://Scripts/Character/movement.gd" id="3_m34ki"]
+[ext_resource type="Script" uid="uid://6nb4tennp60n" path="res://core/subscribe.gd" id="1_m34ki"]
+[ext_resource type="Script" uid="uid://cwglm01tqggx7" path="res://components/game_over/gameover_collider.gd" id="1_r8bcl"]
+[ext_resource type="Script" uid="uid://buta7cndy81pw" path="res://components/stamina_bar/stamina_bar.gd" id="2_kwrm5"]
+[ext_resource type="Script" uid="uid://dxr6kauv1jku8" path="res://components/camera/move_camera.gd" id="2_rlidi"]
+[ext_resource type="Shader" uid="uid://b00txshotptk8" path="res://assets/shaders/platform.gdshader" id="2_wbxth"]
+[ext_resource type="Script" uid="uid://didr8av5fwgid" path="res://components/player/movement.gd" id="3_m34ki"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rlidi"]
 size = Vector2(2682, 23)

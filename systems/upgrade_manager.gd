@@ -27,7 +27,7 @@ func get_stat(statName: String):
 		"stamina": return stat_data.stamina
 	
 func _ready() -> void:
-	stat_data = load("res://Resources/default_stats.tres")
+	stat_data = load("res://core/default_stats.tres")
 	current_stamina = stat_data.stamina
 	
 func reset_all_current_stats():

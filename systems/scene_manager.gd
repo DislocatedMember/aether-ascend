@@ -1,9 +1,9 @@
 extends Node
 
-var menu_scene = preload("res://Scenes/start_menu.tscn")
-var upgrade_scene = preload("res://Scenes/upgrade_menu.tscn")
-var play_scene = preload("res://Scenes/gameplay.tscn")
-var pause_scene = preload("res://Scenes/pause_menu.tscn")
+var menu_scene = preload("res://components/ui/start_menu.tscn")
+var upgrade_scene = preload("res://components/ui/upgrade_menu.tscn")
+var play_scene = preload("res://components/gameplay/gameplay.tscn")
+var pause_scene = preload("res://components/ui/pause_menu.tscn")
 var pause_scene_node = pause_scene.instantiate()
 func _ready() -> void:
 	StateManager.changed_state.connect(handle_state_change)

@@ -17,11 +17,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-StateManager="*res://Scripts/Utility/state_manager.gd"
-UiManager="*res://Scripts/Utility/ui_manager.gd"
-SceneManager="*res://Scripts/Utility/scene_manager.gd"
-UpgradeManager="*res://Scripts/Utility/upgrade_manager.gd"
-TimerManager="*res://Scripts/Utility/timer_manager.gd"
+SceneManager="*res://systems/scene_manager.gd"
+StateManager="*res://systems/state_manager.gd"
+TimerManager="*res://systems/timer_manager.gd"
+UiManager="*res://systems/ui_manager.gd"
+UpgradeManager="*res://systems/upgrade_manager.gd"
 
 [global_group]
 
