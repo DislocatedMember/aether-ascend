@@ -22,6 +22,7 @@ StateManager="*res://systems/state_manager.gd"
 TimerManager="*res://systems/timer_manager.gd"
 UiManager="*res://systems/ui_manager.gd"
 UpgradeManager="*res://systems/upgrade_manager.gd"
+PlayerData="*res://core/player_data.gd"
 
 [global_group]
 

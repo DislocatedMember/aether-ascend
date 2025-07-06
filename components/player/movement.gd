@@ -3,7 +3,7 @@ extends RigidBody2D
 @export var line_renderer: Line2D
 @export var stamina_bar_local: stamina_bar
 
-var jump_count: int = 0
+var max_jumps: int = 0
 var stamina_depletion_timer_idle: custom_timer
 var stamina_depletion_timer_air: custom_timer
 
@@ -16,16 +16,16 @@ func _ready() -> void:
 	stamina_depletion_timer_air = TimerManager.create_timer(UpgradeManager.get_stat("stamina_depletion_time_air"))
 	add_child(stamina_depletion_timer_idle)
 	add_child(stamina_depletion_timer_air)
-	jump_count = 0
+	max_jumps = 0
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		if event.button_index ==  MOUSE_BUTTON_LEFT:
-			if jump_count < UpgradeManager.get_stat("jump_count"):
+			if max_jumps < UpgradeManager.get_stat("max_jumps"):
 				var mouse_pos = get_local_mouse_position()
 				var direction = mouse_pos
 				apply_force(direction.normalized()*UpgradeManager.get_stat("jump_height") * 100)
-				jump_count += 1
+				max_jumps += 1
 				
 			
 			
@@ -55,7 +55,7 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	var body_pos_y = body.position.y
 	if body_pos_y > position.y:
-		jump_count = 0
+		max_jumps = 0
 
 
 

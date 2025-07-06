@@ -3,8 +3,8 @@ extends Node
 var timers = {}
 
 func _ready() -> void:
-	timers["stamina_depletion_cooldown_idle"] = UpgradeManager.stat_data.stamina_depletion_time_idle
-	timers["stamina_depletion_cooldown_air"] = UpgradeManager.stat_data.stamina_depletion_time_air
+	timers["max_stamina_depletion_cooldown_idle"] = UpgradeManager.stat_data.max_stamina_depletion_time_idle
+	timers["max_stamina_depletion_cooldown_air"] = UpgradeManager.stat_data.max_stamina_depletion_time_air
 
 func start_timer(timer_name: String, duration: float):
 	timers[timer_name] = duration

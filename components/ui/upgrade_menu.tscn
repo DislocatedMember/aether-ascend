@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ramx3hbs40md"]
 
-[ext_resource type="Script" uid="uid://6nb4tennp60n" path="res://Scripts/Utility/subcribe.gd" id="1_ltp0x"]
-[ext_resource type="Script" uid="uid://6w5qq1peh82b" path="res://Scripts/UI/manage_upgrade_ui.gd" id="2_11363"]
+[ext_resource type="Script" uid="uid://6nb4tennp60n" path="res://core/subscribe.gd" id="1_ltp0x"]
+[ext_resource type="Script" uid="uid://6w5qq1peh82b" path="res://components/ui/manage_upgrade_ui.gd" id="2_11363"]
 
 [node name="UpgradeMenu" type="Node2D"]
 
@@ -55,6 +55,8 @@ cost: 45
 [node name="stat2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
+script = ExtResource("2_11363")
+stat_name = "max_stamina"
 
 [node name="stat_name" type="Label" parent="CanvasLayer/VBoxContainer/stat2"]
 custom_minimum_size = Vector2(250, 0)
@@ -72,3 +74,4 @@ cost: 50
 "
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/stat/upgrade" to="CanvasLayer/VBoxContainer/stat" method="_on_upgrade_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/stat2/upgrade" to="CanvasLayer/VBoxContainer/stat2" method="_on_upgrade_pressed"]

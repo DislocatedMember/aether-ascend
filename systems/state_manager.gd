@@ -10,30 +10,23 @@ enum state {
 	GAMEOVER,
 	UPGRADE,
 	PAUSE,
-	PLAYING,
+	PLAY,
 	QUIT,
-	RESUME
+	RESUME,
 }
 
-var state_button_map: Dictionary = {
-	"menu" : state.MENU,
-	"upgrade" : state.UPGRADE,
-	"play": state.PLAYING,
-	"quit": state.QUIT,
-	"pause": state.PAUSE,
-	"resume": state.RESUME,
-	"stamina_depleted": state.GAMEOVER,
-	"death" : state.GAMEOVER
-}
 
 func _ready() -> void:
 	if current_state != state.MENU:
 		current_state = state.MENU
-	UiManager.button_clicked.connect(change_state)
+	UiManager.button_clicked.connect(set_state)
+
+func get_state(state_name: String):
+	return state.get(state_name.to_upper())
 
 		
-func change_state(button_name: String):
+func set_state(button_name: String):
 	old_state = current_state
-	current_state = state_button_map[button_name.to_lower()]
+	current_state = get_state(button_name)
 	changed_state.emit(old_state, current_state)
 	
