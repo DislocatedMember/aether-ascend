@@ -25,15 +25,20 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.button_index ==  MOUSE_BUTTON_LEFT:
 			if max_jumps > 0:
 				var mouse_pos = get_local_mouse_position()
-				var direction = mouse_pos
-				apply_impulse(direction*PlayerData.get_stat("jump_power"))
+				var direction = mouse_pos.normalized()
+				var distance = mouse_pos.length()
+				var jump_force = clamp(distance, min_jump_force, max_jump_force)
+				
+				apply_impulse(direction * jump_force * PlayerData.get_stat("jump_power"))
 				max_jumps -= 1
 				
 			
 			
+			
 func _physics_process(delta: float) -> void:
 	var mouse_pos = get_local_mouse_position()
-	line_renderer.set_point_position(0, mouse_pos)
+	line_renderer.set_point_position(0, Vector2.ZERO)
+	line_renderer.set_point_position(1, mouse_pos)
 	
 func _process(delta: float) -> void:
 	if linear_velocity != Vector2.ZERO:
