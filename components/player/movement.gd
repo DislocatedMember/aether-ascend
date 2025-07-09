@@ -2,6 +2,8 @@ extends RigidBody2D
 
 @export var line_renderer: Line2D
 @export var stamina_bar_local: stamina_bar
+@export var min_jump_force: float
+@export var max_jump_force: float
 
 var max_jumps: int = 0
 var stamina_depletion_timer_idle: custom_timer
@@ -12,20 +14,20 @@ func _ready() -> void:
 	line_renderer = get_child(0)
 	line_renderer.add_point(Vector2.ZERO)
 	line_renderer.add_point(Vector2.ZERO)	
-	stamina_depletion_timer_idle = TimerManager.create_timer(UpgradeManager.get_stat("stamina_depletion_time_idle"))
-	stamina_depletion_timer_air = TimerManager.create_timer(UpgradeManager.get_stat("stamina_depletion_time_air"))
+	stamina_depletion_timer_idle = TimerManager.create_timer(PlayerData.get_stat("idle_grace_period"))
+	stamina_depletion_timer_air = TimerManager.create_timer(PlayerData.get_stat("hover_grace_period"))
 	add_child(stamina_depletion_timer_idle)
 	add_child(stamina_depletion_timer_air)
-	max_jumps = 0
+	max_jumps = PlayerData.get_stat("max_jumps")
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		if event.button_index ==  MOUSE_BUTTON_LEFT:
-			if max_jumps < UpgradeManager.get_stat("max_jumps"):
+			if max_jumps > 0:
 				var mouse_pos = get_local_mouse_position()
 				var direction = mouse_pos
-				apply_force(direction.normalized()*UpgradeManager.get_stat("jump_height") * 100)
-				max_jumps += 1
+				apply_impulse(direction*PlayerData.get_stat("jump_power"))
+				max_jumps -= 1
 				
 			
 			
@@ -43,9 +45,9 @@ func _process(delta: float) -> void:
 		stamina_depletion_timer_idle.start()
 		stamina_depletion_timer_air.reset()
 	if stamina_depletion_timer_idle.finished:
-		stamina_bar_local.deplete(UpgradeManager.get_stat("stamina_rate_idle"))
+		stamina_bar_local.deplete(PlayerData.get_stat("idle_stamina_decay"))
 	if stamina_depletion_timer_air.finished:
-		stamina_bar_local.deplete(UpgradeManager.get_stat("stamina_rate_air"))
+		stamina_bar_local.deplete(PlayerData.get_stat("hover_stamina_decay"))
 		
 	
 
@@ -55,7 +57,7 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	var body_pos_y = body.position.y
 	if body_pos_y > position.y:
-		max_jumps = 0
+		max_jumps = PlayerData.get_stat("max_jumps")
 
 
 
