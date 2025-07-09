@@ -1,15 +1,23 @@
-[gd_resource type="Resource" script_class="StatData" load_steps=2 format=3 uid="uid://dwd80v72so32p"]
+[gd_resource type="Resource" script_class="StatData" load_steps=10 format=3 uid="uid://b4hugn0hdhoky"]
 
 [ext_resource type="Script" uid="uid://s3wysif5hqi6" path="res://core/StatData.gd" id="1_hohfr"]
+[ext_resource type="Script" uid="uid://crveh2en0jsyy" path="res://core/stat.gd" id="2_gl3oa"]
+[ext_resource type="Resource" uid="uid://bhsohxqfnlwal" path="res://core/stats/max_stamina.tres" id="3_8ra3n"]
+[ext_resource type="Resource" uid="uid://lekanqpv6l6u" path="res://core/stats/max_jumps.tres" id="4_ho5od"]
+[ext_resource type="Resource" uid="uid://dyo1krfdc130g" path="res://core/stats/jump_power.tres" id="5_1vn2v"]
+[ext_resource type="Resource" uid="uid://bruykqo5ufdl3" path="res://core/stats/idle_stamina_decay.tres" id="6_7em6p"]
+[ext_resource type="Resource" uid="uid://dl8ld64dwnyib" path="res://core/stats/idle_grace_period.tres" id="7_fekbb"]
+[ext_resource type="Resource" uid="uid://x5opclhayonn" path="res://core/stats/hover_stamina_decay.tres" id="8_yitj4"]
+[ext_resource type="Resource" uid="uid://c8th08n3au701" path="res://core/stats/hover_grace_period.tres" id="9_7qulm"]
 
 [resource]
 script = ExtResource("1_hohfr")
-currency = 0
-jump_height = 300.0
+jump_power = 300.0
 max_jumps = 2
 max_stamina = 20.0
-stamina_rate_idle = 0.245
-stamina_depletion_time_idle = 0.435
-stamina_depletion_time_air = 1.0
-stamina_rate_air = 2.06
+idle_stamina_decay = 5.0
+idle_grace_period = 0.5
+hover_grace_period = 0.5
+hover_stamina_decay = 7.0
+stats = Array[ExtResource("2_gl3oa")]([ExtResource("3_8ra3n"), ExtResource("4_ho5od"), ExtResource("5_1vn2v"), ExtResource("6_7em6p"), ExtResource("7_fekbb"), ExtResource("8_yitj4"), ExtResource("9_7qulm")])
 metadata/_custom_type_script = "uid://s3wysif5hqi6"

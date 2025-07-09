@@ -11,7 +11,9 @@ enum Operation{
 
 var stat_data: StatData
 var current_stamina: float
+var currency: int  = 150
 
+var upgrade_levels: Dictionary 
 
 signal player_stat_changed(stat_name:String, value)
 signal player_current_stat_changed(stat_name:String, value)
@@ -19,8 +21,10 @@ signal player_current_stat_changed(stat_name:String, value)
 
 func _ready() -> void:
 	stat_data = load("res://core/default_stats.tres")
+	for stat_name in stat_data.get_stat_names():
+		upgrade_levels[stat_name] = 1
 	reset_all_current_stats()
-
+		
 func get_operation(operation: String):
 	return Operation.get(operation.to_upper())
 
@@ -58,6 +62,18 @@ func modify_current_stat(stat_name:String, value: Variant, operation: Operation 
 func get_stat(stat_name):
 	return stat_data.get_stat(stat_name)
 
+func get_upgrade_info(stat_name: String):
+	return stat_data.get_upgrade_info(stat_name)[upgrade_levels[stat_name]-1]
+	
+func get_upgrade_cost(stat_name: String):
+	return get_upgrade_info(stat_name).cost
+	
+func get_upgrade_cost_multiplier(stat_name: String):
+	return get_upgrade_info(stat_name).cost_multiplier
+
+func get_upgrade_stat_multiplier(stat_name: String):
+	return get_upgrade_info(stat_name).stat_multiplier
+	
 func get_current_stat(stat_name):
 	return get(stat_name)
 	

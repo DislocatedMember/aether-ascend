@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Stat" load_steps=4 format=3 uid="uid://c8th08n3au701"]
+
+[ext_resource type="Script" uid="uid://crveh2en0jsyy" path="res://core/stat.gd" id="1_ln3wq"]
+[ext_resource type="Script" uid="uid://nxaef4ppbxs3" path="res://core/upgrade_info.gd" id="2_wjb4v"]
+
+[sub_resource type="Resource" id="Resource_ln3wq"]
+script = ExtResource("2_wjb4v")
+cost = 25
+cost_multiplier = 0.0
+stat_multiplier = 0.0
+metadata/_custom_type_script = "uid://nxaef4ppbxs3"
+
+[resource]
+script = ExtResource("1_ln3wq")
+stat_name = "hover_grace_period"
+base_value = 0.5
+upgrade_tiers = Array[ExtResource("2_wjb4v")]([SubResource("Resource_ln3wq")])
+metadata/_custom_type_script = "uid://crveh2en0jsyy"

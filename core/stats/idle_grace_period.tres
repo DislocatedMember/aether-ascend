@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Stat" load_steps=4 format=3 uid="uid://dl8ld64dwnyib"]
+
+[ext_resource type="Script" uid="uid://crveh2en0jsyy" path="res://core/stat.gd" id="1_v143n"]
+[ext_resource type="Script" uid="uid://nxaef4ppbxs3" path="res://core/upgrade_info.gd" id="2_yh7xw"]
+
+[sub_resource type="Resource" id="Resource_v143n"]
+script = ExtResource("2_yh7xw")
+cost = 25
+cost_multiplier = 0.0
+stat_multiplier = 0.0
+metadata/_custom_type_script = "uid://nxaef4ppbxs3"
+
+[resource]
+script = ExtResource("1_v143n")
+stat_name = "idle_grace_period"
+base_value = 0.5
+upgrade_tiers = Array[ExtResource("2_yh7xw")]([SubResource("Resource_v143n")])
+metadata/_custom_type_script = "uid://crveh2en0jsyy"
