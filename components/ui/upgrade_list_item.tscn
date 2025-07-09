@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpubo1el0w1gv"]
+
+[ext_resource type="Script" uid="uid://6w5qq1peh82b" path="res://components/ui/upgrade_stat_view.gd" id="1_pbyhu"]
+
+[node name="stat" type="HBoxContainer" node_paths=PackedStringArray("stat_name_label", "value_label", "cost_label", "upgrade_button")]
+alignment = 1
+script = ExtResource("1_pbyhu")
+stat_name = "jump_height"
+stat_name_label = NodePath("stat_name")
+value_label = NodePath("value")
+cost_label = NodePath("cost")
+upgrade_button = NodePath("upgrade_button")
+
+[node name="stat_name" type="Label" parent="."]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="value" type="Label" parent="."]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="cost" type="Label" parent="."]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="upgrade_button" type="Button" parent="."]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Upgrade
+"
+
+[connection signal="pressed" from="upgrade_button" to="." method="_on_upgrade_pressed"]
