@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ramx3hbs40md"]
 
 [ext_resource type="Script" uid="uid://6nb4tennp60n" path="res://core/subscribe.gd" id="1_ltp0x"]
-[ext_resource type="Script" uid="uid://6w5qq1peh82b" path="res://components/ui/manage_upgrade_ui.gd" id="2_11363"]
+[ext_resource type="Script" uid="uid://yvihfhil5nyv" path="res://components/ui/build_upgrade_ui.gd" id="2_2ynee"]
 
 [node name="UpgradeMenu" type="Node2D"]
 
@@ -30,48 +30,29 @@ offset_top = 3.0
 offset_right = 1074.0
 offset_bottom = 614.0
 alignment = 1
+script = ExtResource("2_2ynee")
 
-[node name="stat" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
-script = ExtResource("2_11363")
-stat_name = "jump_height"
 
-[node name="stat_name" type="Label" parent="CanvasLayer/VBoxContainer/stat"]
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-text = "Jump Height"
+text = "Name"
 
-[node name="value" type="Label" parent="CanvasLayer/VBoxContainer/stat"]
-layout_mode = 2
-text = "50"
-
-[node name="upgrade" type="Button" parent="CanvasLayer/VBoxContainer/stat"]
-layout_mode = 2
-text = "upgrade
-cost: 45
-"
-
-[node name="stat2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-script = ExtResource("2_11363")
-stat_name = "max_stamina"
-
-[node name="stat_name" type="Label" parent="CanvasLayer/VBoxContainer/stat2"]
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-text = "Stamina"
+text = "Value"
+horizontal_alignment = 1
 
-[node name="value" type="Label" parent="CanvasLayer/VBoxContainer/stat2"]
+[node name="Label3" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-text = "50"
+text = "Cost"
+horizontal_alignment = 1
 
-[node name="upgrade" type="Button" parent="CanvasLayer/VBoxContainer/stat2"]
+[node name="Label4" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-text = "upgrade
-cost: 50
-"
-
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/stat/upgrade" to="CanvasLayer/VBoxContainer/stat" method="_on_upgrade_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/stat2/upgrade" to="CanvasLayer/VBoxContainer/stat2" method="_on_upgrade_pressed"]
