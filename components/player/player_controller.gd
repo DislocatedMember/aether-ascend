@@ -4,13 +4,16 @@ extends RigidBody2D
 @export var stamina_bar_local: stamina_bar
 @export var min_jump_force: float
 @export var max_jump_force: float
+@export var current_height_label: Label
 
+var start_position_y: float
 var max_jumps: int = 0
 var stamina_depletion_timer_idle: custom_timer
 var stamina_depletion_timer_air: custom_timer
 
 
 func _ready() -> void:
+	start_position_y = position.y
 	line_renderer = get_child(0)
 	line_renderer.add_point(Vector2.ZERO)
 	line_renderer.add_point(Vector2.ZERO)	
@@ -28,19 +31,21 @@ func _unhandled_input(event: InputEvent) -> void:
 				var direction = mouse_pos.normalized()
 				var distance = mouse_pos.length()
 				var jump_force = clamp(distance, min_jump_force, max_jump_force)
-				
 				apply_impulse(direction * jump_force * PlayerData.get_stat("jump_power"))
 				max_jumps -= 1
 				
 			
 			
 			
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var mouse_pos = get_local_mouse_position()
 	line_renderer.set_point_position(0, Vector2.ZERO)
 	line_renderer.set_point_position(1, mouse_pos)
+	var height = start_position_y - position.y 
+	current_height_label.text = "%.0f" % max(0, height / 100)
 	
-func _process(delta: float) -> void:
+	
+func _process(_delta: float) -> void:
 	if linear_velocity != Vector2.ZERO:
 		stamina_bar_local.stop_deplete()
 		stamina_depletion_timer_idle.reset()
