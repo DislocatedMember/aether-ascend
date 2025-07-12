@@ -17,14 +17,25 @@ var upgrade_levels: Dictionary
 
 signal player_stat_changed(stat_name:String, value)
 signal player_current_stat_changed(stat_name:String, value)
-
+signal currency_changed(value: int)
 
 func _ready() -> void:
 	stat_data = load("res://core/default_stats.tres")
 	for stat_name in stat_data.get_stat_names():
 		upgrade_levels[stat_name] = 1
 	reset_all_current_stats()
-		
+
+func add_currency():
+	currency += get_stat("currency_value")
+	currency_changed.emit(currency)
+
+func decrease_currency(value: int):
+	currency -= value
+	currency_changed.emit(currency)
+
+func get_currency():
+	return currency
+	
 func get_operation(operation: String):
 	return Operation.get(operation.to_upper())
 
@@ -71,8 +82,11 @@ func get_upgrade_cost(stat_name: String):
 func get_upgrade_cost_multiplier(stat_name: String):
 	return get_upgrade_info(stat_name).cost_multiplier
 
-func get_upgrade_stat_multiplier(stat_name: String):
-	return get_upgrade_info(stat_name).stat_multiplier
+func get_upgrade_operation(stat_name:String):
+	return get_upgrade_info(stat_name).stat_mult_operation
+	
+func get_upgrade_stat_modifier(stat_name: String):
+	return get_upgrade_info(stat_name).stat_modifier
 	
 func get_current_stat(stat_name):
 	return get(stat_name)
