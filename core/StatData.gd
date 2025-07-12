@@ -20,6 +20,7 @@ func find_stat(stat_name: String) -> Stat:
 	return null
 			
 func set_stat(stat_name, value):
+	find_stat(stat_name).base_value = value
 	set(stat_name, value)
 	stat_changed.emit()
 
