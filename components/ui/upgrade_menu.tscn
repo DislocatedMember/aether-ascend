@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://ramx3hbs40md"]
+[gd_scene load_steps=4 format=3 uid="uid://ramx3hbs40md"]
 
-[ext_resource type="Script" uid="uid://6nb4tennp60n" path="res://core/subscribe.gd" id="1_ltp0x"]
+[ext_resource type="Script" uid="uid://6nb4tennp60n" path="res://core/subscribe_button.gd" id="1_ltp0x"]
 [ext_resource type="Script" uid="uid://yvihfhil5nyv" path="res://components/ui/build_upgrade_ui.gd" id="2_2ynee"]
+[ext_resource type="Script" uid="uid://c861axidlchsw" path="res://core/subscribe_label.gd" id="2_nag4d"]
 
 [node name="UpgradeMenu" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="button_container" type="VBoxContainer" parent="CanvasLayer" groups=["button_container"]]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" groups=["button_container"]]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -15,14 +16,28 @@ anchor_bottom = 1.0
 offset_top = -31.0
 grow_horizontal = 2
 grow_vertical = 0
-alignment = 2
+alignment = 1
 
-[node name="menu" type="Button" parent="CanvasLayer/button_container"]
+[node name="menu" type="Button" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "< Back to Menu
 "
 script = ExtResource("1_ltp0x")
+
+[node name="play" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Restart
+"
+script = ExtResource("1_ltp0x")
+
+[node name="current_currency" type="Label" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(180.455, 0)
+layout_mode = 2
+text = "Aether Glimpse: "
+horizontal_alignment = 1
+script = ExtResource("2_nag4d")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 offset_left = 97.0

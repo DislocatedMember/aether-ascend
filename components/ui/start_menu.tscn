@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://blua7td5w6wnx"]
 
-[ext_resource type="Script" uid="uid://6nb4tennp60n" path="res://core/subscribe.gd" id="2_jgtwh"]
+[ext_resource type="Script" uid="uid://6nb4tennp60n" path="res://core/subscribe_button.gd" id="2_jgtwh"]
 
 [node name="StartMenu" type="Node2D"]
 

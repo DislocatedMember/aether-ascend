@@ -5,7 +5,6 @@
 [node name="stat" type="HBoxContainer" node_paths=PackedStringArray("stat_name_label", "value_label", "cost_label", "upgrade_button")]
 alignment = 1
 script = ExtResource("1_pbyhu")
-stat_name = "jump_height"
 stat_name_label = NodePath("stat_name")
 value_label = NodePath("value")
 cost_label = NodePath("cost")
