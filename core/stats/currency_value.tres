@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Stat" load_steps=4 format=3 uid="uid://c1uhaqsgakoan"]
+
+[ext_resource type="Script" uid="uid://crveh2en0jsyy" path="res://core/stat.gd" id="1_ovvb0"]
+[ext_resource type="Script" uid="uid://nxaef4ppbxs3" path="res://core/upgrade_info.gd" id="2_dy6pw"]
+
+[sub_resource type="Resource" id="Resource_ln3wq"]
+script = ExtResource("2_dy6pw")
+cost = 25
+cost_multiplier = 1.1
+stat_modifier = 1.0
+stat_mult_operation = 1
+metadata/_custom_type_script = "uid://nxaef4ppbxs3"
+
+[resource]
+script = ExtResource("1_ovvb0")
+stat_name = "currency_value"
+base_value = 1.0
+upgrade_tiers = Array[ExtResource("2_dy6pw")]([SubResource("Resource_ln3wq")])
+metadata/_custom_type_script = "uid://crveh2en0jsyy"

@@ -13,6 +13,6 @@ metadata/_custom_type_script = "uid://nxaef4ppbxs3"
 [resource]
 script = ExtResource("1_iup65")
 stat_name = "jump_power"
-base_value = 1.5
+base_value = 1.01
 upgrade_tiers = Array[ExtResource("2_rjq7c")]([SubResource("Resource_iup65")])
 metadata/_custom_type_script = "uid://crveh2en0jsyy"
