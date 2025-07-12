@@ -1,4 +1,4 @@
 extends Button
 
 func _ready() -> void:
-	UiManager.subscribe(self)
+	UiManager.subscribe_button(self)
