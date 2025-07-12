@@ -23,11 +23,11 @@ func handle_state_change(old_state: StateManager.state, new_state: StateManager.
 		StateManager.state.MENU:
 			if old_state == StateManager.state.PAUSE:
 				_resume_game()
-			get_tree().change_scene_to_packed(menu_scene)
+			change_scene(menu_scene)
 		StateManager.state.UPGRADE:
-			get_tree().change_scene_to_packed(upgrade_scene)
+			change_scene(upgrade_scene)
 		StateManager.state.PLAY:
-			get_tree().change_scene_to_packed(play_scene)
+			change_scene(play_scene)
 		StateManager.state.PAUSE:
 			pause_scene_node = pause_scene.instantiate()
 			get_tree().current_scene.add_child(pause_scene_node)
@@ -36,7 +36,9 @@ func handle_state_change(old_state: StateManager.state, new_state: StateManager.
 			_resume_game()
 		StateManager.state.GAMEOVER:
 			PlayerData.reset_all_current_stats()
-			get_tree().change_scene_to_packed(menu_scene)
+			change_scene(menu_scene)
 		_:
 			pass
 			
+func change_scene(scene: Resource):
+	get_tree().call_deferred("change_scene_to_packed", scene)
