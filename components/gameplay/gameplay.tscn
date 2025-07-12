@@ -1,14 +1,27 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxgloygw2t3wu"]
+[gd_scene load_steps=22 format=3 uid="uid://dxgloygw2t3wu"]
 
-[ext_resource type="Script" uid="uid://6nb4tennp60n" path="res://core/subscribe.gd" id="1_m34ki"]
+[ext_resource type="Script" uid="uid://6nb4tennp60n" path="res://core/subscribe_button.gd" id="1_m34ki"]
 [ext_resource type="Script" uid="uid://cwglm01tqggx7" path="res://components/game_over/gameover_collider.gd" id="1_r8bcl"]
 [ext_resource type="Script" uid="uid://buta7cndy81pw" path="res://components/stamina_bar/stamina_bar.gd" id="2_kwrm5"]
 [ext_resource type="Script" uid="uid://dxr6kauv1jku8" path="res://components/camera/move_camera.gd" id="2_rlidi"]
 [ext_resource type="Shader" uid="uid://b00txshotptk8" path="res://assets/shaders/platform.gdshader" id="2_wbxth"]
-[ext_resource type="Script" uid="uid://didr8av5fwgid" path="res://components/player/movement.gd" id="3_m34ki"]
+[ext_resource type="Script" uid="uid://didr8av5fwgid" path="res://components/player/player_controller.gd" id="3_m34ki"]
+[ext_resource type="Script" uid="uid://c861axidlchsw" path="res://core/subscribe_label.gd" id="4_88nde"]
+[ext_resource type="Script" uid="uid://by4hbgfp3fnpf" path="res://components/ui/draw_jump_pad.gd" id="7_ltfvk"]
+[ext_resource type="Script" uid="uid://dcix7r1t30gy8" path="res://components/gameplay/gain_currency.gd" id="8_la42a"]
+[ext_resource type="Shader" uid="uid://crsndkennp31q" path="res://assets/shaders/currency.gdshader" id="8_rct16"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rlidi"]
 size = Vector2(2682, 23)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ltfvk"]
+line_spacing = 3.28
+paragraph_spacing = 0.065
+font_size = 30
+font_color = Color(0.0322005, 0.587468, 0.757326, 1)
+outline_size = 17
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m34ki"]
 shader = ExtResource("2_wbxth")
@@ -31,6 +44,20 @@ shader_parameter/b = 0.57
 
 [sub_resource type="QuadMesh" id="QuadMesh_rlidi"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_la42a"]
+shader = ExtResource("8_rct16")
+shader_parameter/magnitude = 0.195
+shader_parameter/speed = 6.0
+shader_parameter/fade_out_speed = 3.0
+shader_parameter/r = 0.2
+shader_parameter/g = 0.72
+shader_parameter/b = 0.31
+shader_parameter/min_a = 0.55
+
+[sub_resource type="QuadMesh" id="QuadMesh_88nde"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rct16"]
+
 [node name="Gameplay" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("border", "player")]
@@ -51,6 +78,47 @@ shape = SubResource("RectangleShape2D_rlidi")
 
 [node name="Node2D" type="Node2D" parent="Camera2D"]
 position = Vector2(-45, -252)
+
+[node name="jump_pad" type="Node2D" parent="Camera2D"]
+position = Vector2(-575, -326)
+script = ExtResource("7_ltfvk")
+circle_radius = 67.645
+start_angle = -150.0
+max_angle = 120.0
+
+[node name="center_pos" type="Node2D" parent="Camera2D/jump_pad"]
+position = Vector2(525, 641)
+
+[node name="current_height" type="Label" parent="Camera2D"]
+layout_direction = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -99.0
+offset_top = -319.0
+offset_right = 99.0
+offset_bottom = -296.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "220"
+label_settings = SubResource("LabelSettings_ltfvk")
+horizontal_alignment = 1
+
+[node name="current_currency" type="Label" parent="Camera2D"]
+layout_direction = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -575.0
+offset_top = -324.0
+offset_right = -377.0
+offset_bottom = -282.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "220"
+label_settings = SubResource("LabelSettings_ltfvk")
+horizontal_alignment = 1
+script = ExtResource("4_88nde")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -113,6 +181,21 @@ position = Vector2(1.90735e-06, 0)
 shape = SubResource("RectangleShape2D_wbxth")
 one_way_collision = true
 
+[node name="platform_dummy7" type="StaticBody2D" parent="." groups=["platforms"]]
+position = Vector2(569, 620)
+scale = Vector2(87.588, 5.065)
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="platform_dummy7"]
+material = SubResource("ShaderMaterial_m34ki")
+rotation = 3.14159
+scale = Vector2(14.885, 13.555)
+mesh = SubResource("QuadMesh_kwrm5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform_dummy7"]
+position = Vector2(1.90735e-06, 0)
+shape = SubResource("RectangleShape2D_wbxth")
+one_way_collision = true
+
 [node name="platform_dummy2" type="StaticBody2D" parent="." groups=["platforms"]]
 position = Vector2(526, 416)
 scale = Vector2(12.2783, 0.70975)
@@ -128,21 +211,6 @@ position = Vector2(1.90735e-06, 0)
 shape = SubResource("RectangleShape2D_wbxth")
 one_way_collision = true
 one_way_collision_margin = 13.8
-
-[node name="platform_dummy3" type="StaticBody2D" parent="." groups=["platforms"]]
-position = Vector2(526, 618)
-scale = Vector2(12.2783, 0.70975)
-
-[node name="MeshInstance2D2" type="MeshInstance2D" parent="platform_dummy3"]
-material = SubResource("ShaderMaterial_m34ki")
-rotation = 3.14159
-scale = Vector2(14.885, 13.555)
-mesh = SubResource("QuadMesh_kwrm5")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="platform_dummy3"]
-position = Vector2(1.90735e-06, 0)
-shape = SubResource("RectangleShape2D_wbxth")
-one_way_collision = true
 
 [node name="platform_dummy4" type="StaticBody2D" parent="." groups=["platforms"]]
 position = Vector2(333, -279)
@@ -190,8 +258,8 @@ position = Vector2(1.90735e-06, 0)
 shape = SubResource("RectangleShape2D_wbxth")
 one_way_collision = true
 
-[node name="character_dummy" type="RigidBody2D" parent="." node_paths=PackedStringArray("line_renderer", "stamina_bar_local")]
-position = Vector2(502, 567)
+[node name="character_dummy" type="RigidBody2D" parent="." node_paths=PackedStringArray("line_renderer", "stamina_bar_local", "current_height_label")]
+position = Vector2(548, 574)
 mass = 0.4
 lock_rotation = true
 contact_monitor = true
@@ -201,6 +269,7 @@ line_renderer = NodePath("Line2D")
 stamina_bar_local = NodePath("../CanvasLayer/ProgressBar")
 min_jump_force = 150.0
 max_jump_force = 300.0
+current_height_label = NodePath("../Camera2D/current_height")
 
 [node name="Line2D" type="Line2D" parent="character_dummy"]
 rotation = -0.00333281
@@ -215,7 +284,60 @@ material = SubResource("ShaderMaterial_wbxth")
 scale = Vector2(20, 20)
 mesh = SubResource("QuadMesh_rlidi")
 
+[node name="currency" type="Area2D" parent="." node_paths=PackedStringArray("currency_label")]
+position = Vector2(513, 322)
+script = ExtResource("8_la42a")
+currency_label = NodePath("../Camera2D/current_currency")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="currency"]
+material = SubResource("ShaderMaterial_la42a")
+rotation = 0.785398
+scale = Vector2(20, 20)
+mesh = SubResource("QuadMesh_88nde")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="currency"]
+scale = Vector2(1.395, 1.395)
+shape = SubResource("CircleShape2D_rct16")
+
+[node name="currency2" type="Area2D" parent="." node_paths=PackedStringArray("currency_label")]
+position = Vector2(374, 322)
+script = ExtResource("8_la42a")
+currency_label = NodePath("../Camera2D/current_currency")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="currency2"]
+material = SubResource("ShaderMaterial_la42a")
+rotation = 0.785398
+scale = Vector2(20, 20)
+mesh = SubResource("QuadMesh_88nde")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="currency2"]
+scale = Vector2(1.395, 1.395)
+shape = SubResource("CircleShape2D_rct16")
+
+[node name="currency3" type="Area2D" parent="." node_paths=PackedStringArray("currency_label")]
+position = Vector2(443, 168)
+script = ExtResource("8_la42a")
+currency_label = NodePath("../Camera2D/current_currency")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="currency3"]
+material = SubResource("ShaderMaterial_la42a")
+rotation = 0.785398
+scale = Vector2(20, 20)
+mesh = SubResource("QuadMesh_88nde")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="currency3"]
+scale = Vector2(1.395, 1.395)
+shape = SubResource("CircleShape2D_rct16")
+
+[node name="Node2D" type="Node2D" parent="."]
+
 [connection signal="area_entered" from="Camera2D/death" to="Camera2D/death" method="_on_area_entered"]
 [connection signal="body_entered" from="Camera2D/death" to="Camera2D/death" method="_on_body_entered"]
 [connection signal="body_entered" from="character_dummy" to="character_dummy" method="_on_body_entered"]
 [connection signal="body_exited" from="character_dummy" to="character_dummy" method="_on_body_exited"]
+[connection signal="area_entered" from="currency" to="currency" method="_on_area_entered"]
+[connection signal="body_entered" from="currency" to="currency" method="_on_body_entered"]
+[connection signal="area_entered" from="currency2" to="currency2" method="_on_area_entered"]
+[connection signal="body_entered" from="currency2" to="currency2" method="_on_body_entered"]
+[connection signal="area_entered" from="currency3" to="currency3" method="_on_area_entered"]
+[connection signal="body_entered" from="currency3" to="currency3" method="_on_body_entered"]
